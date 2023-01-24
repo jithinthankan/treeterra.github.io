@@ -4,8 +4,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tree Terra Architecture Studio</title>
+    <style type="text/css">
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *:before,
+      *:after {
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+      }
+      :root {
+        --primary-color: #44b136;
+        --background-color: #fbfffb;
+        --on-background-color: #191919;
+        --shadow: rgba(0, 0, 0, 0.1);
+        --primary-font-family: "Montserrat", sans-serif;
+      }
+      body {
+        font-family: var(--primary-font-family);
+        background-color: var(--background-color);
+        color: var(--on-background-color);
+        display: flex;
+        height: 100vh;
+        flex-direction: column;
+      }
+      .title {
+        display: flex;
+        align-items: center;
+      }
+      .logo {
+        height: 50px;
+        width: 50px;
+      }
+      h3 {
+        line-height: 1;
+      }
+      .main-container {
+        background: url("backgroundImage.jpeg");
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
   </head>
   <body>
-    Tree Terra Architecture Studio
+    <div class="title">
+      <div>
+        <img class="logo" src="./logo.png" />
+      </div>
+      <div>
+        <h3>Tree Terra Architecture Studio + Builders</h3>
+      </div>
+    </div>
+    <div class="main-container"></div>
   </body>
 </html>
