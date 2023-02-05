@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tree Terra Architecture Studio</title>
     <style type="text/css">
-      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
       html {
         box-sizing: border-box;
       }
@@ -18,18 +18,39 @@
         box-sizing: inherit;
       }
       :root {
-        --primary-color: #44b136;
-        --background-color: #fbfffb;
-        --on-background-color: #191919;
+        --primary: #519f15;
+        --on-primary: #fff;
+        --primary-container: #c6eea8;
+        --on-primary-container: #204900;
+        --secondary: #2b3c2e;
+        --on-secondary: #ffffff;
+        --secondary-container: #e8f7dd;
+        --on-secondary-container: #1c2217;
+        --background: #f5f9f2;
+        --on-background: #1c1b1f;
+        --surface: #f5f9f2;
+        --on-surface: #1c1d1b;
+        /* --surface-variant: #e7e0ec; */
+        --surface-variant: #eefbee;
+        --success-container: #c9edc9;
+        --on-success-container: #026a02;
+        --on-surface-variant: #49454f;
+        --outline: #79747e;
+        --outline-variant: #cac4d0;
+        --outline-light: #f0eded;
+        --error: #b3261e;
+        --on-error: #ffffff;
+        --error-container: #f9dedc;
+        --on-error-container: #410e0b;
         --shadow: rgba(0, 0, 0, 0.1);
         --primary-font-family: "Montserrat", sans-serif;
       }
       body {
         font-family: var(--primary-font-family);
+        font-weight: 400;
         background-color: var(--background-color);
         color: var(--on-background-color);
         display: flex;
-        height: 100vh;
         flex-direction: column;
       }
       .title {
@@ -40,27 +61,261 @@
         height: 50px;
         width: 50px;
       }
-      h3 {
+      .title h3 {
         line-height: 1;
       }
+      .topnav {
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        height: 53px;
+        background-color: var(--on-secondary);
+        width: 100vw;
+        border-bottom: 1px solid var(--outline-light);
+        z-index: 100;
+      }
+      .toggle-button {
+        display: none;
+      }
+      .menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 100vw;
+        background-color: var(--background);
+      }
+      .toggle-button,
+      .menu-listing a,
+      .menu-listing a:visited,
+      .menu-listing a:link,
+      .topnav a,
+      .topnav a:visited,
+      .topnav a:link {
+        color: black;
+        float: left;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      .toggle-button:hover,
+      .menu-listing a:hover,
+      .topnav a:hover {
+        background-color: var(--surface-variant);
+        color: var(--on-surface-variant);
+      }
+      .toggle-button:active,
+      menu-listing a:active,
+      .topnav a:active {
+        background-color: var(--secondary-container);
+        color: var(--on-secondary-container);
+      }
       .main-container {
-        background: url("backgroundImage.jpeg");
-        height: 100%;
-        width: 100%;
+        height: 100vh;
+        width: 100vw;
         background-repeat: no-repeat;
         background-size: cover;
+        padding-top: 53px;
+        display: flex;
+      }
+      .menu-listing {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .image-area-main {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+      .image-area {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .title-area {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 38px;
+        font-weight: 900;
+        text-align: center;
+        flex-direction: column;
+      }
+      .image-element {
+        height: 25vh;
+        width: 25vh;
+        border-radius: 50%;
+        overflow: hidden;
+        position: absolute;
+        opacity: 0.95;
+      }
+      .main-image {
+        height: 50vh;
+        width: 50vh;
+        border-radius: 50%;
+        overflow: hidden;
+        position: absolute;
+        opacity: 0.95;
+      }
+      .contact {
+        background-color: var(--secondary);
+        color: #929292;
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        margin-top: 50px;
+      }
+      .block {
+        flex: 1;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+      }
+      .block h5 {
+        color: rgb(182, 182, 182);
+      }
+      .block a:active,
+      .block a:visited,
+      .block a:link {
+        color: rgb(182, 182, 182);
+        text-decoration: none;
+      }
+      @media only screen and (max-width: 900px) {
+        nav {
+          display: none;
+        }
+        .toggle-button {
+          display: flex;
+        }
+        .menu.show {
+          display: flex;
+        }
+        .main-container {
+          flex-direction: column;
+        }
+        .image-element {
+          opacity: 1;
+          z-index: 10;
+        }
+        .main-image {
+          opacity: 1;
+        }
+        .title-area {
+          max-height: 200px;
+        }
+      }
+      @media only screen and (max-width: 768px) {
+        .contact {
+          flex-direction: column;
+        }
       }
     </style>
+    <script>
+      const menuHandler = () => {
+        document.querySelector(".menu").classList.toggle("show");
+      };
+    </script>
   </head>
   <body>
-    <div class="title">
-      <div>
-        <img class="logo" src="./logo.png" />
+    <div class="topnav">
+      <div class="title">
+        <div>
+          <img class="logo" src="./logo.png" />
+        </div>
+        <div>
+          <h4>Tree Terra Architecture Studio + Builders</h4>
+        </div>
       </div>
-      <div>
-        <h3>Tree Terra Architecture Studio + Builders</h3>
+      <nav>
+        <a href="#contact">Contact Us</a>
+      </nav>
+      <div class="toggle-button" onclick="menuHandler(event)">
+        <svg
+          id="menu-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          height="24"
+          width="24"
+        >
+          <path d="M3 18v-2h18v2Zm0-5v-2h18v2Zm0-5V6h18v2Z" />
+        </svg>
       </div>
     </div>
-    <div class="main-container"></div>
+    <div class="menu">
+      <div style="display: flex; width: 100%; justify-content: flex-end">
+        <div class="toggle-button close-button" onclick="menuHandler(event)">
+          <svg
+            id="close-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            width="24"
+          >
+            <path
+              d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="menu-listing">
+        <a href="#contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="main-container">
+      <div class="title-area">
+        <span>Tree Terra Architecture</span>
+        <span>Studio + Builders</span>
+        <span
+          style="
+            color: grey;
+            font-size: 15px;
+            padding-top: 8px;
+            font-weight: 200;
+          "
+          >Designing places to inspire, built to last.</span
+        >
+      </div>
+      <div class="image-area">
+        <span class="image-element" style="top: 0; right: 0">
+          <img src="./images/interior-1.jpeg" class="image-area-main" />
+        </span>
+        <span class="main-image">
+          <img src="./images/house-1.jpeg" class="image-area-main" />
+        </span>
+        <span class="image-element" style="bottom: 0; right: 0">
+          <img src="./images/house-3.jpeg" class="image-area-main" />
+        </span>
+      </div>
+    </div>
+    <div id="contact" class="contact">
+      <div class="block">
+        <h5>Address</h5>
+        <p>
+          Tree Terra Architecture Studio + Builders Room no - 559 B2, Anil Tower
+          , College Junction Kothamangalam. Land Mark- Opposite YMCA
+          Kothamangalam.
+        </p>
+      </div>
+      <div class="block">
+        <h5>Contact</h5>
+        <p>Jithin 98460 64024</p>
+        <p>Saljan 98478 86647</p>
+      </div>
+      <div class="block">
+        <h5>Social links</h5>
+        <a href="https://www.youtube.com/@treeterraarchitecture">YouTube</a>
+        <a
+          href="https://instagram.com/tree_terra_architecture?igshid=Yzg5MTU1MDY="
+          >Instagram</a
+        >
+      </div>
+    </div>
   </body>
 </html>
